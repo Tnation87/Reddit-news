@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Reddit news</string>
+    <string name="kotlin_news">Kotlin news</string>
 </resources>
