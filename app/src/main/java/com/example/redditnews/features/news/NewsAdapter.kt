@@ -7,9 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.example.presentation.models.NewsUiModel
+import com.example.redditnews.common.extensions.loadImageUrl
 import com.example.redditnews.databinding.ArticleItemLayoutBinding
 
 class NewsAdapter(private val clickListener: (NewsUiModel) -> Unit):
@@ -42,8 +41,7 @@ class NewsAdapter(private val clickListener: (NewsUiModel) -> Unit):
             article.thumbnail?.let {
                 binding.thumbnailIv.visibility = VISIBLE
                 binding.separator.visibility = VISIBLE
-                val builder = Glide.with(binding.thumbnailIv).load(it).apply(RequestOptions().centerInside())
-                builder.into(binding.thumbnailIv)
+                binding.thumbnailIv.loadImageUrl(it)
             }
 
             itemView.setOnClickListener {

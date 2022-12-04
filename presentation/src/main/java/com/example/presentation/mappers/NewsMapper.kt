@@ -6,7 +6,14 @@ import com.example.repos.models.NewsItem
 class NewsMapper :
     UiModelMapper<NewsItem, NewsUiModel> {
         override fun mapFromUiModel(model: NewsUiModel): NewsItem {
-            throw UnsupportedOperationException()
+            return with(model) {
+                NewsItem(
+                    id = id,
+                    title = title,
+                    thumbnail = thumbnail,
+                    body = body
+                )
+            }
         }
 
         override fun mapToUiModel(model: NewsItem): NewsUiModel {
@@ -15,8 +22,7 @@ class NewsMapper :
                     id = id,
                     thumbnail = thumbnail,
                     title = title,
-                    body = body,
-                    selected = false
+                    body = body
                 )
             }
         }

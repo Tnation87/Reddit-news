@@ -25,4 +25,12 @@ class NewsRepoImp @Inject constructor(
             interactor.getNews().orEmpty().map { newsCacheMapper.mapToItem(it) }
         }
     }
+
+    override fun selectArticle(article: NewsItem) {
+        interactor.selectedArticle = newsCacheMapper.mapFromItem(article)
+    }
+
+    override fun getSelectedArticle(): NewsItem? {
+        return newsCacheMapper.mapToItem(interactor.selectedArticle ?: return null)
+    }
 }

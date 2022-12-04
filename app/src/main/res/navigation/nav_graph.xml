@@ -16,6 +16,6 @@
     </fragment>
     <fragment
         android:id="@+id/articleViewFragment"
-        android:name="com.example.redditnews.ArticleViewFragment"
+        android:name="com.example.redditnews.features.news.ArticleViewFragment"
         android:label="ArticleViewFragment" />
 </navigation>

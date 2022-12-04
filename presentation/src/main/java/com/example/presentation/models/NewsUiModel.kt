@@ -8,6 +8,5 @@ data class NewsUiModel(
     val id: String,
     val title: String?,
     val thumbnail: String?,
-    val body: String?,
-    val selected: Boolean
+    val body: String?
 ) : UiModel, Parcelable
