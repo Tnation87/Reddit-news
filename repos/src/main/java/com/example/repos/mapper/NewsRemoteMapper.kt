@@ -13,7 +13,7 @@ class NewsRemoteMapper : ItemMapper<NewsRemote, NewsItem> {
             NewsItem(
                 id = id,
                 title = title,
-                thumbnail = thumbnail,
+                thumbnail = media?.oembed?.thumbnailUrl,
                 body = body
             )
         }
