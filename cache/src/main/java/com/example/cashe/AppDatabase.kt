@@ -13,7 +13,8 @@ import com.example.cashe.news.NewsDao
 @Database(
     entities = [
         NewsCache::class,
-    ], version = DATABASE_VERSION
+    ], version = DATABASE_VERSION,
+    exportSchema = false
 )
 @TypeConverters(
     NewsCacheConverter::class
@@ -40,10 +41,6 @@ abstract class AppDatabase : RoomDatabase() {
                 }
             }
             return INSTANCE!!
-        }
-
-        fun destroyInstance() {
-            INSTANCE = null
         }
     }
 }

@@ -5,7 +5,14 @@ import com.example.repos.models.NewsItem
 
 class NewsCacheMapper: ItemMapper<NewsCache, NewsItem> {
     override fun mapFromItem(model: NewsItem): NewsCache {
-        throw UnsupportedOperationException()
+        return with(model) {
+            NewsCache(
+                id = id,
+                title = title,
+                thumbnail = thumbnail,
+                body = body
+            )
+        }
     }
 
     override fun mapToItem(model: NewsCache): NewsItem {

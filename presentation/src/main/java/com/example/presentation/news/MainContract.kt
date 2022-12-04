@@ -7,10 +7,7 @@ import com.example.presentation.models.NewsUiModel
 class MainContract {
 
     // Events that user performed
-    sealed class MainIntent : UiIntent {
-        object OnArticleClicked : MainIntent()
-        object ShowArticles : MainIntent()
-    }
+    object MainIntent : UiIntent
 
     sealed class MainViewState: UiState {
         object Idle : MainViewState()

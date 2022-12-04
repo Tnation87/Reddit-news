@@ -7,7 +7,7 @@ data class NewsResponse(
 )
 
 data class Data (
-    val children  : ArrayList<Child>
+    val children  : List<Child>
 )
 
 data class Child (

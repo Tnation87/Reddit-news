@@ -17,7 +17,9 @@ class NewsRepoImp @Inject constructor(
         return try {
             // First try to get data from remote
             val newsList = apiService.getKotlinNewsAsync().await().data?.children ?: return null
-            newsList.map { newsRemoteMapper.mapToItem(it.newsItem ?: return@map null) }
+            val mappedList = newsList.map { newsRemoteMapper.mapToItem(it.newsItem ?: return@map null) }
+            interactor.putNews(mappedList.mapNotNull { newsCacheMapper.mapFromItem(it ?: return@mapNotNull null) })
+            mappedList
         } catch (e: ResponseError) {
             // Error getting data from remote, so we will try to get it from local cache
             interactor.getNews().orEmpty().map { newsCacheMapper.mapToItem(it) }

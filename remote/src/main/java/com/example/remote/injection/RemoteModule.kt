@@ -1,6 +1,7 @@
 package com.example.remote.injection
 
 import android.app.Application
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.remote.api.ApiService
 import com.example.remote.factory.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
@@ -10,6 +11,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import com.example.remote.factory.UnitConverterFactory
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -26,7 +28,7 @@ class RemoteModule {
 
     @Provides
     @Singleton
-    fun provideMoshi(application: Application): Moshi = Moshi.Builder()
+    fun provideMoshi(): Moshi = Moshi.Builder()
         .add(KotlinJsonAdapterFactory()) //keep this at the end
         .build()
 
@@ -64,6 +66,13 @@ class RemoteModule {
     @Singleton
     fun provideApiServiceHolder(): APIServiceHolder {
         return APIServiceHolder()
+    }
+
+    @Singleton
+    @Provides
+    @Named("Chuck")
+    fun provideChuckInterceptor(application: Application): Interceptor {
+        return ChuckerInterceptor.Builder(application).build()
     }
 
     companion object {

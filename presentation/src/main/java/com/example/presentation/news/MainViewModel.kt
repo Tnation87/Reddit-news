@@ -4,6 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.presentation.BaseViewModel
 import com.example.presentation.mappers.Mappers.newsMapper
 import com.example.use_cases.GetNewsUseCase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,21 +15,7 @@ class MainViewModel @Inject constructor(val newsUseCase: GetNewsUseCase) :
     }
 
     override fun handleIntent(intent: MainContract.MainIntent) {
-        when (intent) {
-            is MainContract.MainIntent.ShowArticles -> {
-                getNews()
-            }
-            is MainContract.MainIntent.OnArticleClicked -> {
-
-            }
-        }
-    }
-
-    /**
-     * Gets all news
-     */
-    private fun getNews() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             // Set Loading
             setState { MainContract.MainViewState.Loading }
 

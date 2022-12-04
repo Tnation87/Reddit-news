@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface ApiService {
 
-    @GET("/r/kotlin/.json")
+    @GET("r/kotlin/.json")
     fun getKotlinNewsAsync(): Deferred<NewsResponse>
 }
